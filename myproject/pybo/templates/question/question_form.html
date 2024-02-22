@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+<!--질문등록 -->
+<div class="container">
+    <h5 class="my-3 border-bottom">질문등록</h5>
+
+    <!-- 폼 오류가 있는 경우 -->
+    {% if form.errors %}
+    <div class="alert alert-danger" role="alert">
+
+        {% for field, errors    in form.errors.items() %}
+            <strong>{{ form[field].label }}</strong>
+            <ul>
+                {% for error in errors %}
+                    <li>{{error}}</li>
+                {% endfor %}
+            </ul>
+        {% endfor %}
+
+    </div>
+    {% endif %}
+
+    <form method="post" class="my-3" >
+        {{form.csrf_token}}
+        <div class="mb-3">
+            <label for="subject">제목</label>
+            <input type="text" class="form-control" name="subject" id="subject" value="{{form.subject.data or ''}}">
+        </div>
+        <div class="mb-3">
+            <label for="contents">내용</label>
+            <textarea class="form-control" name="contents" id="contents" rows="7">{{form.contents.data or ''}}</textarea>
+            {{ simplemde.load }}
+        </div>
+        <button type="submit" class="btn btn-primary">저장</button>
+    </form>
+</div>
+{% endblock %}

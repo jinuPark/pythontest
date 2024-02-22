@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- bootstrap-->
+    <link rel="stylesheet" href="{{url_for('static',filename='bootstrap.min.css')}}">
+    <!--기본css -->
+    <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{url_for('static',filename='favicon.ico')}}" >
+    {{ simplemde.css }}
+    {{ simplemde.js }}
+    <title>PCWK</title>
+</head>
+<body>
+<!--네비게이션 -->
+{% include "navbar.html" %}
+<!--//네비게이션 -->
+
+
+    <!-- 기본 템플릿에 삽입될 내용 -->
+    <!-- bootstrap 자바스크립트: 반응형 메뉴처리(햄버거) -->
+    <script src="{{url_for('static',filename='bootstrap.min.js')}}"></script>
+
+    {% block content %}
+    {% endblock %}
+
+    <!-- 자바스크립트 -->
+    {% block script %}
+    {% endblock %}
+    <!-- 자바스크립트 end -->
+</body>
+</html>
